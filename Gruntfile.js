@@ -6,6 +6,7 @@ var mountFolder = function (connect, dir) {
   return connect.static(require('path').resolve(dir));
 };
 
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -15,7 +16,7 @@ var mountFolder = function (connect, dir) {
 module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
   require('time-grunt')(grunt);
-
+  grunt.loadNpmTasks('grunt-karma');
   // configurable paths
   var yeomanConfig = {
     app: 'app',
@@ -370,7 +371,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-     'clean:release',
+    'clean:release',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',

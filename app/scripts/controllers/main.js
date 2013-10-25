@@ -34,7 +34,7 @@ angular.module('green.inputmaskApp')
         };
 
 
-        $scope.mask = { mask: ["999.999", "aa-aa-aa"]};
+        $scope.mask = { regex: ["999.999", "aa-aa-aa"]};
 
 
         $scope.regexOption = {

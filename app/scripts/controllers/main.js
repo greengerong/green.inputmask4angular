@@ -6,22 +6,22 @@ angular.module('green.inputmaskApp')
         $scope.testoption = {
             "mask": "99-9999999",
             "oncomplete": function () {
-                console.log(arguments);
-                console.log("oncomplete");
+                console.log();
+                console.log(arguments,"oncomplete!this log form controler");
             },
             "onKeyValidation": function () {
-                console.log("onKeyValidation");
+                console.log("onKeyValidation event happend! this log form controler");
             }
         }
 
+        //default value
         $scope.test1 = new Date();
 
-        $scope.testFormatOption = {
+        $scope.dateFormatOption = {
             parser: function (viewValue) {
                 return viewValue ? new Date(viewValue) : undefined;
             },
             formatter: function (modelValue) {
-                console.log(modelValue, "111111");
                 if (!modelValue) {
                     return "";
                 }
@@ -40,6 +40,11 @@ angular.module('green.inputmaskApp')
         $scope.regexOption = {
             regex: "[a-zA-Z0-9._%-]+@[a-zA-Z0-9-]+\\.[a-zA-Z]{2,4}"
         };
+
+        $scope.functionOption = {
+         mask: function () { 
+            return ["[1-]AAA-999", "[1-]999-AAA"]; 
+        }};
 
 
     }]);

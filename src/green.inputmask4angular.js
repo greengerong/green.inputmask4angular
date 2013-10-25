@@ -12,7 +12,6 @@ angular.module('green.inputmask4angular', [])
 
                 if (attrs.formatOption) {
                     var formatOption = scope.$eval(attrs.formatOption);
-                    console.log(formatOption, ngModel);
                     if (formatOption.parser) {
                         ngModel.$parsers.push(formatOption.parser);
                     }
@@ -33,7 +32,6 @@ angular.module('green.inputmask4angular', [])
                                 var viewValue = elm.val();
                                 if (viewValue !== ngModel.$viewValue) {
                                     ngModel.$setViewValue(viewValue);
-                                    console.log(ngModel.$viewValue);
                                 }
                                 if (fun) {
                                     fun.apply(scope, args);

@@ -44,6 +44,10 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['copy:styles', 'autoprefixer']
       },
+      release: {
+        files: ['<%= yeoman.src %>/*.js'],
+        tasks: ['copy:release']
+      },
       livereload: {
         options: {
           livereload: LIVERELOAD_PORT
@@ -51,7 +55,7 @@ module.exports = function (grunt) {
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
-          '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
+          '{.tmp,<%= yeoman.app %>}/{scripts,release}/{,*/}*.js',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
@@ -125,7 +129,7 @@ module.exports = function (grunt) {
           dot: true,
           src: [
             '<%= yeoman.release %>/*',
-            '!<%= yeoman.dist %>/.git*'
+            '<%= yeoman.app %>/release/'
           ]
         }]
       },
@@ -259,6 +263,14 @@ module.exports = function (grunt) {
           src: [
             '**'
           ]
+        },{
+          expand: true,
+          dot: true,
+          cwd: '<%= yeoman.src %>',
+          dest: '<%= yeoman.app %>/release',
+          src: [
+            '**'
+          ]
         }, {
           expand: true,
           cwd: '.tmp/images',
@@ -353,6 +365,8 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'clean:release',
+      'copy:release',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
@@ -363,6 +377,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
+    'clean:release',
     'concurrent:test',
     'autoprefixer',
     'connect:test',

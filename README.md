@@ -1,7 +1,8 @@
 green.inputmask4angular
 ========
-build status: [![Build Status](https://travis-ci.org/greengerong/green.inputmask4angular.png?branch=master)](https://travis-ci.org/greengerong/green.inputmask4angular)
-==============
+
+>>build status: [![Build Status](https://travis-ci.org/greengerong/green.inputmask4angular.png?branch=master)](https://travis-ci.org/greengerong/green.inputmask4angular)
+
 >>This project is a angular adapter for [jquery.inputmask](https://github.com/RobinHerbots/jquery.inputmask,"jquery.inputmask"). 
 
 

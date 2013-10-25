@@ -2,13 +2,27 @@
     <h1>'Allo, 'Allo!</h1>
 
     <div>
+        <h3>mask</h3>
         <input type="text" ng-model="test" input-mask="'mask'" mask-option="testoption"/>
         <pre>{{ test | json }}</pre>
     </div>
 
     <div>
+        <h3>y-m-d</h3>
         <input type="text" ng-model="test1" input-mask="'y-m-d'" format-option="testFormatOption"/>
         <pre>{{ test1 | json }}</pre>
+    </div>
+
+    <div>
+        <h3>y-m-d</h3>
+        <input type="text" ng-model="test2" input-mask="mask"/>
+        <pre>{{ test2 | json }}</pre>
+    </div>
+
+    <div>
+        <h3>Regex</h3>
+        <input type="text" ng-model="test3" input-mask="'Regex'" mask-option="regexOption"/>
+        <pre>{{ test3 | json }}</pre>
     </div>
 
 </div>

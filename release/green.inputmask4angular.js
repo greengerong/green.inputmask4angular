@@ -7,8 +7,24 @@ angular.module('green.inputmask4angular', [])
             link: function (scope, elm, attrs, ngModel) {
                 var applyModelEvents = ["oncomplete", "onKeyUp", "onKeyValidation"],
                     maskType = "mask",
-                    maskOption,
                     defaultOption = {};
+
+
+                if (attrs.formatOption) {
+                    var formatOption = scope.$eval(attrs.formatOption);
+                    console.log(formatOption, ngModel);
+                    if (formatOption.parser) {
+                        ngModel.$parsers.push(formatOption.parser);
+                    }
+
+                    if (formatOption.formatter) {
+                        ngModel.$formatters.push(formatOption.formatter);
+                    }
+
+                    if (formatOption.isEmpty) {
+                        ngModel.$isEmpty = formatOption.isEmpty;
+                    }
+                }
 
                 var applyModel = function (fun) {
                     return function () {
@@ -28,39 +44,29 @@ angular.module('green.inputmask4angular', [])
                 };
 
                 var extendOption = function (option) {
+                    var newOption = angular.extend(defaultOption, option);
                     angular.forEach(applyModelEvents, function (key) {
-                        option[key] = applyModel(option[key]);
+                        newOption[key] = applyModel(newOption[key]);
                     });
 
-                    return angular.extend(defaultOption, option);
+                    return newOption;
                 };
 
                 if (attrs.inputMask) {
                     maskType = scope.$eval(attrs.inputMask) || "mask";
                 }
 
-                maskOption = extendOption(scope.$eval(attrs.maskOption) || {});
-
-                if (attrs.formatOption) {
-                    var formatOption = scope.$eval(attrs.formatOption);
-                    console.log(formatOption, ngModel);
-                    if (formatOption.parser) {
-                        ngModel.$parsers.push(formatOption.parser);
-                    }
-
-                    if (formatOption.formatter) {
-                        ngModel.$formatters.push(formatOption.formatter);
-                    }
-
-                    if (formatOption.isEmpty) {
-                        ngModel.$isEmpty = formatOption.isEmpty;
-                    }
+                if (angular.isObject(maskType)) {
+                    var maskOption = extendOption(maskType);
+                    $timeout(function () {
+                        elm.inputmask(maskOption);
+                    });
+                } else {
+                    var maskOption = extendOption(scope.$eval(attrs.maskOption) || {});
+                    $timeout(function () {
+                        elm.inputmask(maskType, maskOption);
+                    });
                 }
-
-                $timeout(function () {
-                    elm.inputmask(maskType, maskOption);
-                });
-
             }
         }
     }

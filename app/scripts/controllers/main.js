@@ -15,6 +15,7 @@ angular.module('green.inputmaskApp')
         }
 
         $scope.test1 = new Date();
+
         $scope.testFormatOption = {
             parser: function (viewValue) {
                 return viewValue ? new Date(viewValue) : undefined;
@@ -30,6 +31,14 @@ angular.module('green.inputmaskApp')
             isEmpty: function (modelValue) {
                 return !modelValue;
             }
+        };
+
+
+        $scope.mask = { mask: ["999.999", "aa-aa-aa"]};
+
+
+        $scope.regexOption = {
+            regex: "[a-zA-Z0-9._%-]+@[a-zA-Z0-9-]+\\.[a-zA-Z]{2,4}"
         };
 
 

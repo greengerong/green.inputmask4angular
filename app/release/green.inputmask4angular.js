@@ -6,8 +6,7 @@ angular.module('green.inputmask4angular', [])
             require: 'ngModel',
             link: function (scope, elm, attrs, ngModel) {
                 var applyModelEvents = ["oncomplete", "onKeyUp", "onKeyValidation"],
-                    maskType = "mask",
-                    defaultOption = {};
+                    maskType = "mask";
 
 
                 if (attrs.formatOption) {
@@ -42,7 +41,7 @@ angular.module('green.inputmask4angular', [])
                 };
 
                 var extendOption = function (option) {
-                    var newOption = angular.extend(defaultOption, option);
+                    var newOption = angular.extend({}, option);
                     angular.forEach(applyModelEvents, function (key) {
                         newOption[key] = applyModel(newOption[key]);
                     });

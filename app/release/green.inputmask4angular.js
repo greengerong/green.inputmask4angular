@@ -1,3 +1,12 @@
+/******************************************
+ *                                        *
+ * Auth: green gerong                     *
+ * Date: 2012                             *
+ * blog: http://greengerong.github.io/    *
+ * github: https://github.com/greengerong *
+ *                                        *
+ ******************************************/
+
 'use strict';
 
 angular.module('green.inputmask4angular', []).directive("inputMask", [ "$timeout", function ($timeout) {

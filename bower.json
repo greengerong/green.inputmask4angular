@@ -10,5 +10,24 @@
   },
   "devDependencies": {
     "angular-mocks": "~1.0.7"
-  }
+  },
+  "keywords": [
+    "angular",
+    "angularjs",
+    "input-mask"
+  ],
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    ".gitignore",
+    ".travis.yml",
+    "lib",
+    "app",
+    ".DS_Store",
+    ".editorconfig",
+    "Gruntfile.js",
+    "karma.conf.js",
+    "release"
+  ]
 }

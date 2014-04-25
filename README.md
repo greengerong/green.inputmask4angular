@@ -10,6 +10,24 @@ green.inputmask4angular
 
 Demo
 
+## Usage
+
+1. Add the js to your HTML code.
+
+```html
+<script src="scripts/jquery.inputmask.bundle.min.js"></script>
+<script src="release/green.inputmask4angular.js"></script>
+```
+2. Add dependency to your app modules
+```script
+var myApp = angular.module("myApp", ["green.inputmask4angular"]);
+```
+
+3. Put directive `input-mask` into your input
+```html
+<input type="text" ng-model="test" input-mask="'mask'" mask-option="testoption"/>
+```
+
 >>Please see the app project:
 
 			<div>

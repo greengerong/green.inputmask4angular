@@ -8,8 +8,6 @@ green.inputmask4angular
 
 [Download this plugin](https://github.com/greengerong/green.inputmask4angular/tree/master/release).
 
-Demo
-
 ## Usage
 
 1. Add the js to your HTML code.
@@ -27,6 +25,7 @@ var myApp = angular.module("myApp", ["green.inputmask4angular"]);
 ```html
 <input type="text" ng-model="test" input-mask="'mask'" mask-option="testoption"/>
 ```
+## Demo
 
 >>Please see the app project:
 

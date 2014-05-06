@@ -34,7 +34,7 @@ angular.module('green.inputmask4angular', []).directive("inputMask", [ "$timeout
                 return function () {
                     (function (args) {
                         $timeout(function () {
-                            var viewValue = elm.val();
+                            var viewValue = elm.inputmask('unmaskedvalue');
                             if (viewValue !== ngModel.$viewValue) {
                                 ngModel.$setViewValue(viewValue);
                             }

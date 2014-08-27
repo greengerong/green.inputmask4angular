@@ -3,9 +3,9 @@ green.inputmask4angular
 
 This project is a angular adapter for [jquery.inputmask(>=2.3.61)](https://github.com/RobinHerbots/jquery.inputmask). 
 
-Download link:
+[Download this plugin](https://github.com/greengerong/green.inputmask4angular/tree/master/release).:
 
-	[Download this plugin](https://github.com/greengerong/green.inputmask4angular/tree/master/release).
+	(https://github.com/greengerong/green.inputmask4angular/tree/master/release
 
 
 Bower install:

@@ -8,6 +8,12 @@ green.inputmask4angular
 
 [Download this plugin](https://github.com/greengerong/green.inputmask4angular/tree/master/release).
 
+
+Bower install:
+
+	bower install angular-inputmask
+	
+
 ## Usage
 
 1. Add the js to your HTML code.

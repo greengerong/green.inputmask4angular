@@ -5,7 +5,7 @@ This project is a angular adapter for [jquery.inputmask(>=2.3.61)](https://githu
 
 [Download this plugin](https://github.com/greengerong/green.inputmask4angular/tree/master/release).:
 
-	(https://github.com/greengerong/green.inputmask4angular/tree/master/release
+	https://github.com/greengerong/green.inputmask4angular/tree/master/release
 
 
 Bower install:

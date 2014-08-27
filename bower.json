@@ -29,6 +29,9 @@
     ".editorconfig",
     "Gruntfile.js",
     "karma.conf.js",
-    "release"
+    "release",
+    ".gitattributes",
+    ".jshintrc",
+    "package.json"
   ]
 }

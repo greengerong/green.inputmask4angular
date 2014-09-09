@@ -13,10 +13,15 @@ angular.module('green.inputmask4angular', []).directive("inputMask", [ "$timeout
     return {
         require: 'ngModel',
         link: function (scope, elm, attrs, ngModel) {
+            var ua = navigator.userAgent, chrome = /chrome/i.test(ua), android = /android/i.test(ua);
+            if (android && chrome) {
+                return;
+            }
+
             var applyModelEvents = [ "oncomplete", "onKeyUp", "onKeyValidation" ], maskType = "mask";
 
-            if (attrs.formatOption) {
-                var formatOption = scope.$eval(attrs.formatOption);
+            scope.$watch(attrs.formatOption, function (formatOption) {
+                var formatOption = formatOption || {};
                 if (formatOption.parser) {
                     ngModel.$parsers.push(formatOption.parser);
                 }
@@ -28,14 +33,17 @@ angular.module('green.inputmask4angular', []).directive("inputMask", [ "$timeout
                 if (formatOption.isEmpty) {
                     ngModel.$isEmpty = formatOption.isEmpty;
                 }
-            }
+            });
+
 
             var applyModel = function (fun) {
                 return function () {
                     (function (args) {
                         $timeout(function () {
-                            ngModel.$setViewValue(elm.inputmask('unmaskedvalue'));
-
+                            var viewValue = elm.inputmask('unmaskedvalue');
+                            if (viewValue !== ngModel.$viewValue) {
+                                ngModel.$setViewValue(viewValue);
+                            }
                             if (fun) {
                                 fun.apply(scope, args);
                             }
@@ -53,30 +61,38 @@ angular.module('green.inputmask4angular', []).directive("inputMask", [ "$timeout
                 return newOption;
             };
 
-            if (attrs.inputMask) {
-                maskType = scope.$eval(attrs.inputMask);
-            }
-
-            if (maskType) {
-                if (angular.isObject(maskType)) {
-                    var maskOption = extendOption(maskType);
-                    $timeout(function () {
-                        elm.inputmask(maskOption);
-                    });
-                } else {
-                    var maskOption = extendOption(scope.$eval(attrs.maskOption) || {});
-                    $timeout(function () {
-                        elm.inputmask(maskType, maskOption);
-                    });
+            var registerInputMask = function () {
+                if (attrs.inputMask) {
+                    maskType = scope.$eval(attrs.inputMask);
                 }
-            }
 
-            elm.bind("blur", function(){
-                $timeout(function () {
-                    ngModel.$setViewValue(elm.inputmask('unmaskedvalue'));
-                });
+                if (maskType) {
+                    if (angular.isObject(maskType)) {
+                        var maskOption = extendOption(maskType);
+                        $timeout(function () {
+                            elm.inputmask(maskOption);
+                        });
+                    } else {
+                        var maskOption = scope.$eval(attrs.maskOption);
+                        if (maskOption) {
+                            maskOption = extendOption(maskOption);
+                            $timeout(function () {
+                                elm.inputmask(maskType, maskOption);
+                            });
+                        }
+                    }
+                }
+            };
+
+            angular.forEach([attrs.inputMask, attrs.maskOption], function (field) {
+                if (field) {
+                    scope.$watch(field, registerInputMask);
+                }
             });
 
+            scope.$on("$destroy", function () {
+                elm.inputmask('remove');
+            });
         }
     }
 } ]);

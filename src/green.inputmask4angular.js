@@ -52,6 +52,8 @@ angular.module('green.inputmask4angular', []).directive("inputMask", [ "$timeout
                 };
             };
 
+            scope.$watch(attrs.ngModel, applyModel());
+
             var extendOption = function (option) {
                 var newOption = angular.extend({}, option);
                 angular.forEach(applyModelEvents, function (key) {

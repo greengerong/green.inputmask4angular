@@ -20,22 +20,23 @@ angular.module('green.inputmask4angular', []).directive("inputMask", [ "$timeout
 
             var applyModelEvents = [ "oncomplete", "onKeyUp", "onKeyValidation" ], maskType = "mask";
 
-            scope.$watch(attrs.formatOption, function (formatOption) {
-                var formatOption = formatOption || {};
-                if (formatOption.parser) {
-                    ngModel.$parsers.push(formatOption.parser);
-                }
+            if (attrs.formatOption) {
+                scope.$watch(attrs.formatOption, function (formatOption) {
+                    var formatOption = formatOption || {};
+                    if (formatOption.parser) {
+                        ngModel.$parsers.push(formatOption.parser);
+                    }
 
-                if (formatOption.formatter) {
-                    ngModel.$formatters.push(formatOption.formatter);
-                }
+                    if (formatOption.formatter) {
+                        ngModel.$formatters.push(formatOption.formatter);
+                    }
 
-                if (formatOption.isEmpty) {
-                    ngModel.$isEmpty = formatOption.isEmpty;
-                }
-            });
+                    if (formatOption.isEmpty) {
+                        ngModel.$isEmpty = formatOption.isEmpty;
+                    }
+                });
 
-
+            }
             var applyModel = function (fun) {
                 return function () {
                     (function (args) {

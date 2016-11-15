@@ -18,7 +18,7 @@ angular.module('green.inputmask4angular', []).directive("inputMask", [ "$timeout
                 return;
             }
 
-            var applyModelEvents = [ "oncomplete", "onKeyUp", "onKeyValidation" ], maskType = "mask";
+            var applyModelEvents = ["oncomplete", "onKeyUp", "onKeyValidation", 'oncleared'], maskType = "mask";
 
             if (attrs.formatOption) {
                 scope.$watch(attrs.formatOption, function (formatOption) {
